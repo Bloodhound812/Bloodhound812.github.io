@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>REVERSE | xhy的个人博客</title><meta name="author" content="xhy"><meta name="copyright" content="xhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="REVERSE 汇编语言（asm） mov 被赋值方, 要赋的值；  sub 是递减指令，其格式为  sub 目标, 递减的值；  call 为调用指令，其格式为  call 要调用的函数地址；  ret 和  leave 连用是出栈指令，也即代表了一个函数的结束。通常在 masm 里，我们只会看到  ret，leave 并不常见 通常函数的返回值保存在  ax 寄存器里，比如  eax，rax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REVERSE">
+<meta property="og:url" content="https://bloodhound812.github.io/2024/11/10/REVERSE/index.html">
+<meta property="og:site_name" content="xhy的个人博客">
+<meta property="og:description" content="REVERSE 汇编语言（asm） mov 被赋值方, 要赋的值；  sub 是递减指令，其格式为  sub 目标, 递减的值；  call 为调用指令，其格式为  call 要调用的函数地址；  ret 和  leave 连用是出栈指令，也即代表了一个函数的结束。通常在 masm 里，我们只会看到  ret，leave 并不常见 通常函数的返回值保存在  ax 寄存器里，比如  eax，rax">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bloodhound812.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-11-10T11:51:21.000Z">
+<meta property="article:modified_time" content="2024-11-10T12:04:17.464Z">
+<meta property="article:author" content="xhy">
+<meta property="article:tag" content="摄影 汽车 网络空间安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bloodhound812.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bloodhound812.github.io/2024/11/10/REVERSE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'REVERSE',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xhy的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">REVERSE</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">REVERSE</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-10T11:51:21.000Z" title="发表于 2024-11-10 19:51:21">2024-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-10T12:04:17.464Z" title="更新于 2024-11-10 20:04:17">2024-11-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>REVERSE</strong></p>
+<p><strong>汇编语言（asm）</strong></p>
+<p>mov 被赋值方, 要赋的值<font style="color:rgb(0, 0, 0);">； </font></p>
+<p>sub<font style="color:rgb(0, 0, 0);"> 是递减指令，其格式为 </font></p>
+<p>sub 目标, 递减的值<font style="color:rgb(0, 0, 0);">； </font></p>
+<p>call<font style="color:rgb(0, 0, 0);"> 为调用指令，其格式为 </font></p>
+<p>call 要调用的函数地址<font style="color:rgb(0, 0, 0);">； </font></p>
+<p>ret<font style="color:rgb(0, 0, 0);"> 和 </font></p>
+<p>leave<font style="color:rgb(0, 0, 0);"> 连用是出栈指令，也即代表了一个函数的结束。通常在 masm 里，我们只会看到 </font></p>
+<p>ret<font style="color:rgb(0, 0, 0);">，</font>leave<font style="color:rgb(0, 0, 0);"> 并不常见</font></p>
+<p><font style="color:rgb(0, 0, 0);">通常函数的返回值保存在 </font></p>
+<p>ax<font style="color:rgb(0, 0, 0);"> 寄存器里，比如 </font></p>
+<p>eax，rax<font style="color:rgb(0, 0, 0);"> 等； 函数的参数一般按顺序保存在 </font></p>
+<p>cx、dx、si<font style="color:rgb(0, 0, 0);"> 中，在 64 位汇编中，一般按 </font></p>
+<p>rcx rdx r8 r9 r10 r11 …<font style="color:rgb(0, 0, 0);"> 的顺序保存参数</font></p>
+<p><font style="color:rgb(0, 0, 0);">汇编语言显示，后面加一个h；第一个如果是字母，则前面加一个0；例如0ffh</font></p>
+<p><font style="color:rgb(0, 0, 0);">每个核心都有对应一套寄存器</font></p>
+<p><font style="color:rgb(0, 0, 0);">x86</font></p>
+<p><font style="color:rgb(0, 0, 0);">通用寄存器eax ebx ecx edx esp ebp esi edi</font></p>
+<p><font style="color:rgb(0, 0, 0);">段寄存器cs ss ds es fs gs</font></p>
+<p><font style="color:rgb(0, 0, 0);">标志寄存器eflags</font></p>
+<p><font style="color:rgb(0, 0, 0);">指令指针寄存器eip</font></p>
+<p><font style="color:rgb(0, 0, 0);">通用寄存器(通常)</font></p>
+<table>
+<thead>
+<tr>
+<th><font style="color:rgb(0, 0, 0);">寄存器</font></th>
+<th><font style="color:rgb(0, 0, 0);">用途(通常)</font></th>
+<th><font style="color:rgb(0, 0, 0);">16bit</font></th>
+<th><font style="color:rgb(0, 0, 0);">8bit</font></th>
+<th><font style="color:rgb(0, 0, 0);">编号</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><font style="color:rgb(0, 0, 0);">EAX</font></td>
+<td><font style="color:rgb(0, 0, 0);">累加器 乘除指令</font></td>
+<td><font style="color:rgb(0, 0, 0);">AX</font></td>
+<td><font style="color:rgb(0, 0, 0);">AH</font></td>
+<td><font style="color:rgb(0, 0, 0);">0</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">ECX</font></td>
+<td><font style="color:rgb(0, 0, 0);">循环计数器</font></td>
+<td><font style="color:rgb(0, 0, 0);">CX</font></td>
+<td><font style="color:rgb(0, 0, 0);">AL</font></td>
+<td><font style="color:rgb(0, 0, 0);">1</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">EDX</font></td>
+<td><font style="color:rgb(0, 0, 0);">I&#x2F;O指针</font></td>
+<td><font style="color:rgb(0, 0, 0);">DX</font></td>
+<td><font style="color:rgb(0, 0, 0);">CH</font></td>
+<td><font style="color:rgb(0, 0, 0);">2</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">EBX</font></td>
+<td><font style="color:rgb(0, 0, 0);">DS段的数据指针</font></td>
+<td><font style="color:rgb(0, 0, 0);">BX</font></td>
+<td><font style="color:rgb(0, 0, 0);">CL</font></td>
+<td><font style="color:rgb(0, 0, 0);">3</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">ESP</font></td>
+<td><font style="color:rgb(0, 0, 0);">堆栈指针指向线程栈顶</font></td>
+<td><font style="color:rgb(0, 0, 0);">SP</font></td>
+<td><font style="color:rgb(0, 0, 0);">DH</font></td>
+<td><font style="color:rgb(0, 0, 0);">4</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">EBP</font></td>
+<td><font style="color:rgb(0, 0, 0);">堆栈指针指向线程栈底</font></td>
+<td><font style="color:rgb(0, 0, 0);">BP</font></td>
+<td><font style="color:rgb(0, 0, 0);">DL</font></td>
+<td><font style="color:rgb(0, 0, 0);">5</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">ESI</font></td>
+<td><font style="color:rgb(0, 0, 0);">字符串操作源指针</font></td>
+<td><font style="color:rgb(0, 0, 0);">SI</font></td>
+<td><font style="color:rgb(0, 0, 0);">BH</font></td>
+<td><font style="color:rgb(0, 0, 0);">6</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(0, 0, 0);">EDI</font></td>
+<td><font style="color:rgb(0, 0, 0);">字符串操作目标指针</font></td>
+<td><font style="color:rgb(0, 0, 0);">DI</font></td>
+<td><font style="color:rgb(0, 0, 0);">BL</font></td>
+<td><font style="color:rgb(0, 0, 0);">7</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><img src="https://blogimage812.oss-cn-hangzhou.aliyuncs.com/1731240203438.jpg"></p>
+<p><font style="color:rgb(0, 0, 0);">标志寄存器</font></p>
+<p><img src="https://blogimage812.oss-cn-hangzhou.aliyuncs.com/1731240208558.jpg"></p>
+<p><font style="color:rgb(0, 0, 0);">upx壳</font></p>
+<p><font style="color:rgb(0, 0, 0);">在cyberspacetools–ctf中进入upx文件夹upx-d 文件位置进行脱壳</font></p>
+<p>IDA按键:</p>
+<p>Ctrl+F搜索main函数</p>
+<p>Tab(F5):查看伪代码</p>
+<p>N：更改变量名称</p>
+<p>Shift+F12:字符串窗口</p>
+<p>&#x2F;（；）：添加注释</p>
+<p>H：转化为十六进制</p>
+<p>D：转化数据 </p>
+<p>U：当前指令未知，显示十六进制原始硬编码（花指令常用）</p>
+<p>A：转化为字符串</p>
+<p>C：转化为代码</p>
+<p>Shift+f7：段窗口</p>
+<p>Shift+e提取数据</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Bloodhound812.github.io">xhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bloodhound812.github.io/2024/11/10/REVERSE/">https://bloodhound812.github.io/2024/11/10/REVERSE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Bloodhound812.github.io" target="_blank">xhy的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/11/10/PWN/" title="PWN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">PWN</div></div><div class="info-2"><div class="info-item-1">工具安装 pwntools安装sudo apt update &amp;&amp; sudo apt install python3-pwntools -y 脚本名字不要叫pwn，不然import会失败 PWN 编译原理 预处理–编译–汇编–链接 ** gcc常用命令 -safe-temps 可保留中间产生的.i.s.o文件** ** –verebose：输出详细工作流程** 预处理 gcc- E hello.c -o hello.i 处理所有条件编译指令...</div></div></div></a><a class="pagination-related" href="/2024/11/10/WEB/" title="WEB"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">WEB</div></div><div class="info-2"><div class="info-item-1">信息获取和泄露 PHP 基础知识  echo - 可以输出一个或多个字符串。 print - 只允许输出一个字符串，返回值总为 1 比较两个值是否相等可以使用“&#x3D;&#x3D;”或“&#x3D;&#x3D;&#x3D;”，前者会自动进行类型转换 异或 相同为0不同为1 $_REQUEST —— 接受 GET 和 POST 以及 Cookie 请求传递的参数  常见函数 assert(): 用于调试，检查一个条件是否为 true system(‘’)；将字符串作为操作系统命令执行，多段代码用；隔开 例system(‘ls;pwd’);只返回执行结果的最后一行 想获得所有原始输出可以使用passthru() shell_exec(),  exec(),  passthru()执行外部程序或系统命令 eval() 将字符串作为PHP代码执行 isset() 函数用于检测变量是否已设置并且非NULL unserialize(): 将一个已序列化的字符串转换回 PHP 的值 var_dump() 函数 $a &#x3D; array(1, 2, array(“a”, “b”,...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xhy</div><div class="author-info-description">一只网安noob</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/bloodhound812" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xihaoyuan812c@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/MISC/" title="MISC">MISC</a><time datetime="2024-11-10T12:04:52.000Z" title="发表于 2024-11-10 20:04:52">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/PWN/" title="PWN">PWN</a><time datetime="2024-11-10T12:00:49.000Z" title="发表于 2024-11-10 20:00:49">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/REVERSE/" title="REVERSE">REVERSE</a><time datetime="2024-11-10T11:51:21.000Z" title="发表于 2024-11-10 19:51:21">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/WEB/" title="WEB">WEB</a><time datetime="2024-11-10T11:33:04.000Z" title="发表于 2024-11-10 19:33:04">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/06/free-ai/" title="Free_ai">Free_ai</a><time datetime="2024-11-06T05:10:03.000Z" title="发表于 2024-11-06 13:10:03">2024-11-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By xhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

