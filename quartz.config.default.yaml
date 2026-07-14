@@ -18,28 +18,28 @@ configuration:
     typography:
       header: Schibsted Grotesk
       body: Source Sans Pro
-      code: IBM Plex Mono
+      code: JetBrains Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#f4f5fa"
+        lightgray: "#e1e2e7"
+        gray: "#9699a3"
+        darkgray: "#565f89"
+        dark: "#1a1b26"
+        secondary: "#34548a"
+        tertiary: "#7847bd"
+        highlight: rgba(86, 95, 137, 0.10)
+        textHighlight: "#e0af6888"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#1a1b26"
+        lightgray: "#1f2335"
+        gray: "#3b4261"
+        darkgray: "#a9b1d6"
+        dark: "#c0caf5"
+        secondary: "#7aa2f7"
+        tertiary: "#bb9af7"
+        highlight: rgba(86, 95, 137, 0.20)
+        textHighlight: "#e0af6888"
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
@@ -55,7 +55,7 @@ plugins:
     options:
       theme:
         light: github-light
-        dark: github-dark
+        dark: one-dark-pro
       keepBackground: false
     order: 20
   - source: github:quartz-community/obsidian-flavored-markdown
